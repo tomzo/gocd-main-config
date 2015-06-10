@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cruise xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cruise-config.xsd" schemaVersion="75">
+  <server artifactsdir="logs" commandRepositoryLocation="default" serverId="dev-id">
+    <security>
+      <passwordFile path="../manual-testing/ant_hg/password.properties" />
+      <roles>
+        <role name="xyz" />
+      </roles>
+      <admins>
+        <user>admin</user>
+      </admins>
+    </security>
+  </server>
+  <pipelines group="first">
+    <authorization>
+      <view>
+        <user>operate</user>
+      </view>
+      <admins>
+        <user>operate</user>
+      </admins>
+    </authorization>
+    <pipeline name="pipe-in-main" isLocked="false">
+      <materials>
+        <git url="https://github.com/tomzo/ceph-cookbook.git" />
+      </materials>
+      <stage name="test">
+        <jobs>
+          <job name="test">
+            <tasks>
+              <rake />
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+    </pipeline>
+  </pipelines>
+</cruise>
+
