@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <cruise xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cruise-config.xsd" schemaVersion="75">
-  <config-repo plugin="cruise-xml">
-    <git url="https://github.com/tomzo/gocd-indep-config-part.git" />
-  </config-repo>
-  <config-repo plugin="cruise-xml">
-    <git url="https://github.com/tomzo/gocd-refmain-config-part.git" />
-  </config-repo>
-  <config-repo plugin="cruise-xml">
-    <git url="https://github.com/tomzo/gocd-refpart-config-part.git" />
-  </config-repo>
+  <config-repos>
+    <!-- plugin name is optional -->
+    <config-repo>
+      <git url="https://github.com/tomzo/gocd-indep-config-part.git" />
+    </config-repo>
+    <config-repo plugin="gocd-xml">
+      <git url="https://github.com/tomzo/gocd-refmain-config-part.git" />
+    </config-repo>
+    <config-repo plugin="gocd-xml">
+      <git url="https://github.com/tomzo/gocd-refpart-config-part.git" />
+      <configuration>
+        <property>
+          <key>pattern</key>
+          <value>*.gocd.xml</value>
+        </property>
+      </configuration>
+    </config-repo>
+  </config-repos>
   <!-- the rest of cruise config, nothing new -->
   <server artifactsdir="logs" commandRepositoryLocation="default" serverId="dev-id">
     <security>
